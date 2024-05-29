@@ -70,7 +70,12 @@ public class MainActivity extends AppCompatActivity implements OnDebounceListene
         bindSearch();
         EditTextUtils.addTextListener(binding.searchLayout.searchText, query -> viewModel.updateSearchText(query.toString()));
 
-        binding.searchLayout.resetButton.setOnClickListener(view -> clearSearch());
+        binding.searchLayout.resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearSearch();
+            }
+        });
 
         getSupportFragmentManager().setFragmentResultListener(SortDialogFragment.REQUEST_KEY, this, (requestKey, result) -> {
             final SortType newSortType = SortDialogFragment.from(result);
